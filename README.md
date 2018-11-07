@@ -31,7 +31,8 @@
 - 주문 내역 페이지
 
 ## 페이지 구조
-![페이지 구조](C:\Users\raye0\Desktop\중간 프로젝트(쇼핑몰)\페이지구조.jpg)
+![페이지 구조](https://user-images.githubusercontent.com/37353837/48109880-90f3dd80-e28c-11e8-923a-135adde2c8a8.jpg)
+
 ---
 ## 일자별 작업 예상 일정
 - 1일차[11/7(수)]
