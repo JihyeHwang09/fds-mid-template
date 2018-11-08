@@ -21,7 +21,8 @@ const templates = {
   productList: document.querySelector("#product-list").content,
   productItem: document.querySelector("#product-item").content,
   productDetail: document.querySelector("#product-detail").content,
-  detailImage: document.querySelector("#detail-image").content
+  detailImage: document.querySelector("#detail-image").content,
+  cartItem: document.querySelector('#cart-item').content
 };
 
 const rootEl = document.querySelector('.root');
@@ -30,6 +31,10 @@ const rootEl = document.querySelector('.root');
 function drawFragment(frag) {
   const layoutFrag = document.importNode(templates.layout, true);
   const mainEl = layoutFrag.querySelector(".main");
+  // const loginEl= layoutFrag.querySelector(".login");
+  // loginEl.addEventListener('click', e => {
+  //   drawLoginForm()
+  // })
   mainEl.appendChild(frag);
   rootEl.textContent = "";
   rootEl.appendChild(layoutFrag);
@@ -62,7 +67,16 @@ async function drawLoginForm() {
       password
     });
     localStorage.setItem('token', res.data.token);
-    // drawPostList();
+
+    // 왔던 곳으로 다시 돌아간다.
+    // 멤버에 있는 로그인 버튼을 클릭했을 때 ->
+    // 로그인 X상태 - 바로구매 버튼을 눌렀을 때 ->
+    // 로그인 x 상태 -장바구니 페이지에서 구매 버튼을 눌렀을 때
+    // if () {
+      drawPostList();
+    // } else {
+
+    // }
   });
   // 6. 템플릿을 문서에 삽입
   rootEl.textContent = '';
@@ -123,6 +137,12 @@ async function drawProductDetail(productId) {
   const descriptionEl = frag.querySelector(".description");
   const detailImageListEl = frag.querySelector(".detail-image-list");
   const cartFormEl = frag.querySelector(".cart-form");
+  // 바로 구매하기 버튼 선택하기
+  const buyNowEl = frag.querySelector('.buy-now');
+  // 카트에 담기
+  const addToCartEl = frag.querySelector('.add-to-cart');
+  // 가격 가져오기
+
 
   // 3. 필요한 데이터 불러오기
   const {
@@ -138,6 +158,7 @@ async function drawProductDetail(productId) {
 
     const detailImageEl = frag.querySelector(".detail-image");
 
+
     detailImageEl.setAttribute("src", url);
 
     detailImageListEl.appendChild(frag);
@@ -145,6 +166,104 @@ async function drawProductDetail(productId) {
 
   // 5. 이벤트 리스너 등록하기
 
+  // 바로 구매하기 버튼을 클릭했을 때
+  // 1) 로그인 여부 확인
+  // 1-1) 로그인 o -> 주문/결제 페이지로 보내기
+  // 1-2) 로그인 x -> 로그인 페이지로 보내기
+  buyNowEl.addEventListener('click', e => {
+    e.preventDefault();
+    // 로그인이 되어 있으면
+    const token = localStorage.getItem('token');
+    if (token) {
+      // 주문/결제 페이지로 보내는 코드
+      // drawCartList();
+
+      //로그인이 되어있지 않으면
+    } else {
+      // 로그인 폼 페이지로 이동시키기
+      drawLoginForm();
+    }
+  });
+
+// 카트담기 버튼을 클릭했을 때
+  addToCartEl.addEventListener("click", e => {
+    e.preventDefault();
+    if (confirm('선택하신 상품이 장바구니에 추가되었습니다.\n 장바구니로 이동하시겠습니까?')){
+     // 확인 버튼 누르면 실행할 코드
+      // 장바구니로 이동 시키는 코드
+    //  drawCartList();
+    }
+    // 취소 버튼 누르면, 자동으로 그 상세 페이지에 머물러있는 상태이기 때문에
+    // 따로 코드를 써줄 필요 X
+  });
+  // 6. 템플릿을 문서에 삽입
+  drawFragment(frag);
+}
+
+async function drawCartList() {
+  // 1. 템플릿 복사
+  const frag = document.importNode(templates.cartItem, true);
+
+  // 2. 요소 선택
+  const cartItemEl = frag.querySelector('.cart-item');
+  const mainImageEl = frag.querySelector('.main-image');
+  const titleEl = frag.querySelector('.title');
+  const optionEl = frag.querySelector('.option');
+  const quantityEl = frag.querySelector('.quantity');
+  const priceEl = frag.querySelector('.price');
+
+  // 3. 필요한 데이터 불러오기
+  const {
+    data: {  }
+  } = await api.get(`/products/${productId}`);
+
+  // 4. 내용 채우기
+  // mainImageEl.setAttribute("src", mainImgUrl);
+  // titleEl.textContent = title;
+  // descriptionEl.textContent = description;
+  // for (const url of detailImgUrls) {
+  //   const frag = document.importNode(templates.detailImage, true);
+
+  //   const detailImageEl = frag.querySelector(".detail-image");
+
+
+  //   detailImageEl.setAttribute("src", url);
+
+  //   detailImageListEl.appendChild(frag);
+  // }
+
+  // 5. 이벤트 리스너 등록하기
+
+  // 바로 구매하기 버튼을 클릭했을 때
+  // 1) 로그인 여부 확인
+  // 1-1) 로그인 o -> 주문/결제 페이지로 보내기
+  // 1-2) 로그인 x -> 로그인 페이지로 보내기
+  buyNowEl.addEventListener('click', e => {
+    e.preventDefault();
+    // 로그인이 되어 있으면
+    const token = localStorage.getItem('token');
+    if (token) {
+      // 주문/결제 페이지로 보내는 코드
+      // drawCartList();
+
+      //로그인이 되어있지 않으면
+    } else {
+      // 로그인 폼 페이지로 이동시키기
+      drawLoginForm();
+    }
+  });
+
+  // 카트담기 버튼을 클릭했을 때
+  addToCartEl.addEventListener("click", e => {
+    e.preventDefault();
+    if (confirm('선택하신 상품이 장바구니에 추가되었습니다.\n 장바구니로 이동하시겠습니까?')) {
+      // 확인 버튼 누르면 실행할 코드
+      // 장바구니로 이동 시키는 코드
+      //  drawCartList();
+    }
+    // 취소 버튼 누르면, 자동으로 그 상세 페이지에 머물러있는 상태이기 때문에
+    // 따로 코드를 써줄 필요 X
+  });
   // 6. 템플릿을 문서에 삽입
   drawFragment(frag);
 }
