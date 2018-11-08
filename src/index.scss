@@ -62,8 +62,8 @@ a{
 }
 button {
     color: #ffff;
-
     text-align: center;
+    display: block;
     font-weight: 700;
     border: 0;
     border-radius: 0;
@@ -91,6 +91,7 @@ button {
 // 로고
 // 멤버 링크
 .member {
+  font-weight: 700;
   text-align: right;
   padding:  2px 0 2px 0;
 }
@@ -99,10 +100,11 @@ button {
   display: inline-block;
 }
 .member li {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .member li:nth-child(n+2)::before{
   content:"|";
+  color: #d7d7d7;
 }
 .member a {
   padding: 8px;
@@ -130,6 +132,7 @@ button {
 }
 .menu-item-text:hover {
   color:  #00a78f;
+  cursor: pointer;
 }
 
 .menu-act .menu-item-text::after {
@@ -147,9 +150,9 @@ button {
   display: block;
 }
 
-.menu li:nth-child(n+2)::before{
-  content:"|";
-}
+// .menu li:nth-child(n+2)::before{
+//   content:"|";
+// }
 
 
 // 푸터
@@ -177,6 +180,11 @@ height: 10vh;
   padding: 0;
 }
 
+// 상품 목록 내부의 항목
+.product-list-info {
+  cursor: pointer;
+}
+
 .product-item {
   flex: auto;
   max-width: 335px;
@@ -188,24 +196,29 @@ height: 10vh;
   // 빈공간 없이 가로로 배열하기 위해서 boder: 0줌
   border: 0;
 }
-.product-list-info:hover {
-  border:  #00a78f;
 
+
+.main-image {
+  // 부모 요소의 크기만큼 꽉 차게 커진다
+  // width: 100%;
+  display: block;
+  margin: 0 auto;
+  float: left;
+}
+.main-image, .list-title, .list-description:hover {
+ border-color:  #00a78f;
 }
 
-// .main-image {
-//   // 부모 요소의 크기만큼 꽉 차게 커진다
-//   // width: 100%;
-// }
 
-.title, .description{
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    letter-spacing: 0;
+.product-info{
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  float: right;
 }
 
-.description {
+.list-description {
   color: gray;
   font-size: 1.2rem;
 }
@@ -218,10 +231,83 @@ height: 10vh;
   color: #00a78f;
   border: 1px solid #00a78f;
 }
+.detail-image {
+  display: block;
+  margin: 0 auto;
+}
+.title {
+padding: 0 0 10px 5px;
+}
+.subtitle {
+  color: #d7d7d7;
+}
+.description {
+padding: 0 0 25px 5px;
+}
 
+
+
+// 장바구니
 .cart-item {
   display: table-row;
 }
 .cart-item > div {
   display: table-cell;
+}
+
+
+// 로그인
+.login-form {
+  width: 350px;
+  margin: 0 auto;
+  font-size: 1.6rem;
+}
+.login-titles {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 50px;
+}
+.login-title {
+  border-top: 100px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: block;
+}
+.login-titles > span {
+  font-size: 1.6rem;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+.green {
+  color: #00a78f;
+}
+.sub-title {
+  color: gray;
+  padding-top: 10px;
+
+}
+
+.login-id, .password {
+  width: 100%;
+  height: 17px;
+  border: 1px solid #d7d7d7;
+  padding: 20px;
+  display: block;
+  display: flex;
+  flex-direction: column;
+
+}
+.login-id {
+margin-top: 50px;
+}
+.password {
+margin-top: 10px;
+}
+.btn-login {
+margin-top: 30px;
+padding: 20px;
+width: 100%;
+height: 50px;
 }

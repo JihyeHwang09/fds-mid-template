@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>마켓헬스</title>
+  <title>HealthyU</title>
   <link rel="stylesheet" href="./index.scss">
 </head>
 
@@ -80,15 +80,22 @@
   <!-- 로그인 폼 -->
   <template id="login-form">
     <div class="login-form-wrap">
+      <div class="login-titles">
+        <div class="login-title">
+          <span class="green">Healthy</span><span class="black">U</span>
+        </div>
+        <span class="sub-title">건강한 미래를 위한 선택, Healthy U에 로그인 해주세요.</span>
+      </div>
       <form class="login-form">
-        <input type="text" name="username" placeholder="아이디" autofocus>
-        <input type="password" name="password" placeholder="비밀번호" maxlength="16">
-        <button>로그인</button>
+        <input class="login-id" type="text" name="username" placeholder="아이디" autofocus>
+        <input class="password" type="password" name="password" placeholder="비밀번호" maxlength="16">
+        <button class="btn-login">로그인</button>
       </form>
     </div>
   </template>
 
   <template>
+
     <!-- 멤버 링크 -->
     <!-- <ul class="member">
       <li>
@@ -143,18 +150,18 @@
     <li class="product-item">
       <a class="product-list-info">
         <img class="main-image">
-        <div class="title"></div>
+        <div class="list-title"></div>
         <!-- <span class="cost"></span> -->
-        <div class="description"></div>
+        <div class="list-description"></div>
       </a>
     </li>
   </template>
 
   <!-- 상품 상세 페이지  -->
   <template id="product-detail">
-    <div class="product-detail">
-      <div class="product-info">
+    <div class="product-detail clearfix">
         <img class="main-image">
+       <div class="product-info">
         <div class="title"></div>
         <div class="description"></div>
       </div>
