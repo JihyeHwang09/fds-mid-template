@@ -43,9 +43,13 @@ table {
   clear: both;
 }
 /* 본문 스타일 */
-
+html{
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 10px;
+}
 body {
   background-color: $main-color;
+  font-size: 1.4rem;
 }
 html{
   font-family: 'Noto Sans', sans-serif;
