@@ -1,16 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko-KR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>쇼핑몰!</title>
+  <title>마켓헬스</title>
   <link rel="stylesheet" href="./index.scss">
 </head>
+
 <body>
-  <!-- 템플릿을 이곳에 작성해주세요 -->
+
+  <template id="layout">
+    <div class="appbar">
+      <div class="appbar__left">로고</div>
+      <div class="appbar__right">
+        <div class="appbar__link sign-up">로그인</div>
+        <div class="appbar__link sign-in">회원가입</div>
+        <div class="appbar__link sign-out">로그아웃</div>
+      </div>
+    </div>
+    <nav class="navbar">
+      <div class="navbar__link best">베스트</div>
+      <div class="navbar__link function">기능별</div>
+      <div class="navbar__link brand">라인별</div>
+      <div class="navbar__link raw-material">원료별</div>
+    </nav>
+    <main class="main"></main>
+  </template>
+
+
+  <!-- 고정 헤더, 푸터 구조 -->
+  <header class="header"></header>
+  <footer class="footer"></footer>
+
+
+
+  <!-- 헤더 -->
+  <template id="header">
+    <h1 class="header">
+      <h1 class="logo"><a><img></a></h1>
+  </template>
+  <!-- 로그인 폼 -->
+  <template id="login-form">
+    <form class="login-form">
+      <label>
+        사용자 이름
+        <input type="text" name="username">
+      </label>
+      <label>
+        비밀번호
+        <input type="password" name="password">
+      </label>
+      <button>로그인</button>
+    </form>
+  </template>
+
+  <template>
+    <!-- 멤버 링크 -->
+    <ul class="member">
+      <li>
+        <a href="#">로그인</a>
+      </li>
+      <li>
+        <a href="#">회원가입</a>
+      </li>
+      <li>
+        <a href="#">마이페이지</a>
+      </li>
+      <li>
+        <a href="#">장바구니</a>
+      </li>
+    </ul>
+  </template>
+
+
+  <!-- 메뉴바 -->
+  <template id="menu">
+    <ul class="menu">
+      <li class="menu-item menu-act">
+        <span class="menu-item-text">베스트</span>
+      </li>
+      <li class="menu-item">
+        <span class="menu-item-text">선물세트</span>
+      </li>
+      <li class="menu-item">
+        <span class="menu-item-text">종합영양</span>
+      </li>
+      <li class="menu-item">
+        <span class="menu-item-text">면역증진</span>
+      </li>
+      <li class="menu-item">
+        <span class="menu-item-text">다이어트</span>
+      </li>
+      <li class="menu-item">
+        <span class="menu-item-text">피부건강</span>
+      </li>
+    </ul>
+  </template>
+
+  <!-- 상품 목록 -->
+  <template id="product-list">
+    <ul class="product-list">
+      <!-- tbody 안에 여러 게시물의 목록을 넣어줄 것임 -->
+    </ul>
+  </template>
+
+  <!-- 상품 목록 내부의 항목 -->
+  <template id="product-item">
+    <li class="product-item">
+      <a class="product-list-info">
+        <img class="main-image">
+        <div class="title"></div>
+        <!-- <span class="cost"></span> -->
+        <div class="description"></div>
+      </a>
+    </li>
+  </template>
+
+  <!-- 상품 상세 페이지  -->
+  <template id="product-detail">
+    <div class="product-detail">
+      <div class="product-info">
+        <img class="main-image">
+        <div class="title"></div>
+        <div class="description"></div>
+      </div>
+      <form class="cart-form">
+        <label>
+          옵션
+          <select name="option" class="option required">
+            <option value="" disabled selected>옵션을 선택하세요</option>
+          </select>
+        </label>
+        <label>
+          수량
+          <input type="number" name="quantity" class="quantity" value="1" min="1" required>
+        </label>
+        <button>장바구니에 넣기</button>
+      </form>
+      <div class="total-wrap">
+        가격 <span class="total"></span>
+      </div>
+      <div class="detail-image-list">
+      </div>
+    </div>
+  </template>
+
+  <!-- 상품 상세 이미지들 -->
+  <template id="detail-image">
+    <img class="detail-image">
+  </template>
+
+
+  <!-- 장바구니 -->
+  <template id="cart-item">
+    <div class="cart-item">
+      <img class="main-image">
+      <div class="title"></div>
+      <div class="description"></div>
+      <div class="option"></div>
+      <div class="quantity"></div>
+      <div class="price"></div>
+    </div>
+  </template>
 
   <div class="root"></div>
   <script src="./index.js"></script>
 </body>
+
 </html>

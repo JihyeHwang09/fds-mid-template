@@ -1,5 +1,179 @@
-$main-color: skyblue;
+$main-color: white;
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css");
+// @import url("https://raw.githubusercontent.com/daneden/animate.css/master/animate.css");
+/* 스타일 초기화 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1em;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+	display: block;
+}
+ul {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* CSS 모듈 */
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+/* 본문 스타일 */
+html{
+  font-size: 10px;
+}
+/* 하이퍼링크 스타일 */
+a{
+  color: inherit;
+  text-decoration: none;
+}
+/* 레이아웃 */
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+.header, .main, .footer{
+  width: 990px;
+  margin: 0 auto;
+}
 
+//  내가 만든 스타일
 body {
   background-color: $main-color;
 }
+
+// 헤더
+.header {
+  background-color: aqua;
+  position: relative;
+
+}
+// 로고
+// 멤버 링크
+.member {
+  background-color: pink;
+  text-align: right;
+  padding:  2px 0 2px 0;
+}
+.member li, .member a{
+  // 가로로 붙게 하기 위해서 block이 아닌 inline-block으로 만듦
+  display: inline-block;
+}
+.member li {
+  font-size: 1.4rem;
+}
+.member li:nth-child(n+2)::before{
+  content:"|";
+}
+.member a {
+  padding: 8px;
+
+}
+
+
+.menu {
+  border: 2px 0 solid #bdb8b8;
+  background-color: #F37335;
+  padding-left: 260px;
+  height: 100px;
+}
+.menu-item{
+  position: relative;
+  float: left;
+}
+.menu-item-text:hover {
+  color: darkgreen;
+}
+
+.menu-act .menu-item-text::after {
+  content: "";
+  display: block;
+
+}
+.menu-item-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #000;
+}
+.menu-act {
+  display: block;
+}
+
+// 푸터
+.footer-bg{
+  background-color: purple;
+}
+.footer {
+background-color: yellowgreen;
+height: 10vh;
+}
+
+
+
+// 상품 목록
+.product-list {
+  display: flex;
+  // 가로 정렬
+  flex-direction: row;
+  // 줄 바꿈
+  flex-wrap: wrap;
+  list-style: none;
+  width: 90%;
+  // max-width: 600px;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.product-item {
+  flex: auto;
+  max-width: 335px;
+  height: 590px;
+  display: inline-block;
+  padding: 30px 25px 0 0 ;
+  margin: 0;
+  padding: 0;
+  // 빈공간 없이 가로로 배열하기 위해서 boder: 0줌
+  border: 0;
+  // cursor: pointer;
+}
+.main-image {
+  // 부모 요소의 크기만큼 꽉 차게 커진다
+  width: 100%;
+}
+
+.title, .description{
+    font-family: 'Noto Sans';
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.description {
+  color: gray;
+  font-size: 1.2rem;
+}
+
