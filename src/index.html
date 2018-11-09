@@ -64,7 +64,7 @@
     </nav>
   -->
     <main class="main"></main>
-    <footer class="footer"></footer>
+    <!-- <footer class="footer"></footer> -->
   </template>
 
 
@@ -153,6 +153,7 @@
         <div class="list-title"></div>
         <!-- <span class="cost"></span> -->
         <div class="list-description"></div>
+        <div class="list-total"></div>
       </a>
     </li>
   </template>
@@ -160,18 +161,20 @@
   <!-- 상품 상세 페이지  -->
   <template id="product-detail">
     <div class="product-detail clearfix">
-        <img class="main-image">
-       <div class="product-info">
+      <img class="main-image">
+      <div class="product-info">
         <div class="title"></div>
         <div class="description"></div>
       </div>
       <form class="cart-form">
-        <!-- <label>
+        <label>
           옵션
-          <select name="option" class="option required">
+          <select name="option" class="option" required>
             <option value="" disabled selected>옵션을 선택하세요</option>
+            <option value="1">포장없음</option>
+            <option value="2">선물포장(무료)</option>
           </select>
-        </label> -->
+        </label>
         <label>
           수량
           <input type="number" name="quantity" class="quantity" value="1" min="1" required>
@@ -195,23 +198,32 @@
 
   <!-- 장바구니 페이지 -->
   <template id="cart-item">
-    <div class="cart-item">
-      <ul>
+    <div class="cart-item-wrap">
+      <ul class="cart-item">
+        <li class="cart-head">
+          <input type="checkbox" name="checkbox" value="checkebox">
+          <img class="th-image">
+          <span class="th-title">상품명</span>
+          <span class="th-description">상품정보</span>
+          <span class="th-option">옵션</span>
+          <span class="th-quantity">수량</span>
+          <span class="th-price">가격</span>
+        </li>
       </ul>
     </div>
   </template>
 
 
   <!-- 장바구니 각 항목 -->
-  <template>
-    <li>
-      <div class="cart-info">
+  <template id="cart-row">
+    <li class="cart-row">
+        <input type="checkbox">
         <img class="main-image">
-        <div class="title"></div>
-        <div class="description"></div>
-        <div class="option"></div>
-        <div class="quantity"></div>
-        <div class="price"></div>
+        <span class="title"></span>
+        <span class="description"></span>
+        <span class="option"></span>
+        <span class="quantity"></span>
+        <span class="price"></span>
       </div>
     </li>
   </template>
@@ -247,7 +259,8 @@
   <!-- <header>
     헤더
   </header> -->
-  <div class="root"></div>
+  <div class="root">
+  </div>
   <!-- <footer>
     푸터
   </footer> -->
