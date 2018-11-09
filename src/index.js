@@ -153,8 +153,12 @@ async function drawProductDetail(productId) {
 
   // 3. 필요한 데이터 불러오기
   const {
-    data: { title, description, mainImgUrl, detailImgUrls }
-  } = await api.get(`/products/${productId}`);
+    data: { title, description, mainImgUrl, detailImgUrls, options }
+  } = await api.get(`/products/${productId}`, {
+    params: {
+      _embed: "options"
+    }
+  });
 
 
 
@@ -230,7 +234,7 @@ async function drawProductDetail(productId) {
       if (confirm('선택하신 상품이 장바구니에 추가되었습니다.\n 장바구니로 이동하시겠습니까?')) {
         // 확인 버튼 누르면 실행할 코드
         // 장바구니로 이동 시키는 코드
-        drawCartList();
+        // drawCartList();
       }
       // 취소 버튼 누르면, 자동으로 그 상세 페이지에 머물러있는 상태이기 때문에
       // 따로 코드를 써줄 필요 X
