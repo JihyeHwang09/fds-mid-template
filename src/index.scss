@@ -64,7 +64,6 @@ a{
 button {
     color: #ffff;
     text-align: center;
-    display: block;
     font-weight: 700;
     border: 0;
     border-radius: 0;
@@ -179,7 +178,6 @@ height: 10vh;
   width: 90%;
   // max-width: 600px;
   justify-content: space-between;
-  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -219,7 +217,7 @@ height: 10vh;
   font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 0;
-  float: right;
+  // float: right;
 }
 
 .list-description {

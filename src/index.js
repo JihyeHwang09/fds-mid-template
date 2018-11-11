@@ -90,7 +90,6 @@ async function drawProductList(category) {
 
   // 2. 요소 선택
   const productListEl = frag.querySelector('.product-list');
-  // const totalEl = frag.querySelector('.list-total');
 
 
   // 3. 필요한 데이터 불러오기
@@ -100,13 +99,15 @@ async function drawProductList(category) {
   }
   const { data: productList } = await api.get('/products', {
     params
-  })
+      })
+  const { data } =await api.get('/options');
+  let index = 0;
   // 4. 내용 채우기
-  for (const {
-    id: productId, title, description, mainImgUrl
-  } of productList) {
+  for (const product of productList) {
+
     // 1) 템플릿 복사
     const frag = document.importNode(templates.productItem, true);
+    const totalEl = frag.querySelector('.list-total');
     // 2) 요소 선택
     const productItemEl = frag.querySelector('.product-item');
     const mainImageEl = frag.querySelector('.main-image');
@@ -116,13 +117,15 @@ async function drawProductList(category) {
 
     // 3) 필요한 데이터 불러오기 - X
     // 4) 내용 넣어주기
-    mainImageEl.setAttribute('src', mainImgUrl)
-    titleEl.textContent = title
-    descriptionEl.textContent = description
-    totalEl.textContent = options[0].price + '원'
+    mainImageEl.setAttribute("src", product.mainImgUrl);
+    titleEl.textContent = product.title;
+    descriptionEl.textContent = product.description;
+    console.log(totalEl);
+    totalEl.textContent = data[index].price;
+    index += 2;
     //  5) 이벤트 리스너 등록하기
     productItemEl.addEventListener('click', e => {
-      drawProductDetail(productId);
+      drawProductDetail(product.id);
     })
     // 6. 템플릿을 문서에 삽입
     productListEl.appendChild(frag);
@@ -164,26 +167,24 @@ async function drawProductDetail(productId) {
   });
 
 
+  console.log("options",options);
 
 
   // 4. 내용 채우기
   mainImageEl.setAttribute("src", mainImgUrl);
   titleEl.textContent = title;
   descriptionEl.textContent = description;
-  totalEl.textContent = options[0].price;
+  totalEl.textContent = options[0].price + "원";
 
 
+  const frag2 = document.importNode(templates.detailImage, true);
+  const detailImageEl = frag2.querySelector(".detail-image");
+  detailImageEl.setAttribute("src", detailImgUrls[0]);
+  detailImageListEl.appendChild(frag2);
 
-  for (const url of detailImgUrls) {
-    const frag = document.importNode(templates.detailImage, true);
-
-    const detailImageEl = frag.querySelector(".detail-image");
-
-
-    detailImageEl.setAttribute("src", url);
-
-    detailImageListEl.appendChild(frag);
-  }
+  frag.querySelector('.option').addEventListener('change', e => {
+    document.querySelector('.total').textContent = options[e.target.value - 1].price;
+  })
 
   // 5. 이벤트 리스너 등록하기
 
