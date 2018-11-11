@@ -121,7 +121,7 @@ async function drawProductList(category) {
     titleEl.textContent = product.title;
     descriptionEl.textContent = product.description;
     console.log(totalEl);
-    totalEl.textContent = data[index].price;
+    totalEl.textContent = data[index].price + "원";
     index += 2;
     //  5) 이벤트 리스너 등록하기
     productItemEl.addEventListener('click', e => {
@@ -167,7 +167,7 @@ async function drawProductDetail(productId) {
   });
 
 
-  console.log("options",options);
+  // console.log("options",options);
 
 
   // 4. 내용 채우기

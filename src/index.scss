@@ -63,6 +63,7 @@ a{
 }
 button {
     color: #ffff;
+    display: block;
     text-align: center;
     font-weight: 700;
     border: 0;
@@ -75,6 +76,7 @@ button {
 option, input {
   text-align: center;
 }
+
 /* 레이아웃 */
 *, *::before, *::after{
   box-sizing: border-box;
@@ -159,11 +161,11 @@ option, input {
 
 
 // 푸터
-.footer-bg{
-}
-.footer {
-height: 10vh;
-}
+// .footer-bg{
+// }
+// .footer {
+// height: 10vh;
+// }
 
 
 
@@ -223,15 +225,44 @@ height: 10vh;
 .list-description {
   color: gray;
   font-size: 1.2rem;
+  padding: 10 15px;
 }
+
+.cart-form {
+  display: block;
+  margin-top: 0em;
+  font-size: 1.6rem;
+}
+.cart-form_field {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.product-detail, .cart-form_field {
+  white-space: nowrap;
+  flex: 0 0 30px;
+  display: block;
+  flex: 2;
+  margin-left: 8px;
+  margin-top: 8px;
+  justify-content: space-between;
+}
+
 
 .buy-now {
   background-color: #00a78f;
+  margin-bottom: 5px;
+  margin-top: 7px;
+  padding: 10px;
+
 }
 .add-to-cart {
   background-color: #fff;
   color: #00a78f;
   border: 1px solid #00a78f;
+  padding: 10px 24px 10px 10px;
+
 }
 .detail-image {
   display: block;
@@ -245,6 +276,10 @@ padding: 0 0 10px 5px;
 }
 .description {
 padding: 0 0 25px 5px;
+color: gray;
+}
+.product-info {
+  font-weight: 700;
 }
 
 
