@@ -100,19 +100,26 @@ option, input {
   text-align: right;
   padding:  2px 0 2px 0;
 }
-.member li, .member a{
-  // 가로로 붙게 하기 위해서 block이 아닌 inline-block으로 만듦
-  display: inline-block;
-}
-.member li {
-  font-size: 1.2rem;
-}
-.member li:nth-child(n+2)::before{
-  content:"|";
-  color: #d7d7d7;
-}
-.member a {
-  padding: 8px;
+.member:hover {
+    cursor: pointer;
+  }
+  .member li, .member a{
+    // 가로로 붙게 하기 위해서 block이 아닌 inline-block으로 만듦
+    display: inline-block;
+  }
+  .member li {
+    font-size: 1.2rem;
+  }
+  .member li:hover {
+
+    color:  #00a78f;
+  }
+  .member li:nth-child(n+2)::before{
+    content:"|";
+    color: #d7d7d7;
+  }
+  .member a {
+    padding: 8px;
 
 }
 
@@ -193,7 +200,7 @@ option, input {
   flex: auto;
   max-width: 335px;
   height: 590px;
-  display: inline-block;
+  display: block;
   padding: 30px 25px 0 0 ;
   margin: 0;
   padding: 0;

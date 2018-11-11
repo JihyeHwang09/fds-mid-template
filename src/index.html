@@ -15,36 +15,36 @@
     <header class="header">
       <ul class="member">
         <li>
-          <a class="login" href="#">로그인</a>
+          <a class="login">로그인</a>
         </li>
         <li>
-          <a href="#">회원가입</a>
+          <a class="sign-up">회원가입</a>
         </li>
         <li>
-          <a href="#">마이페이지</a>
+          <a class="my-page">마이페이지</a>
         </li>
         <li>
-          <a href="#">장바구니</a>
+          <a class="my-cart">장바구니</a>
         </li>
       </ul>
       <ul class="menu">
         <li class="menu-item menu-act">
-          <span class="menu-item-text">베스트</span>
+          <span class="menu-item-text best">베스트</span>
         </li>
         <li class="menu-item">
-          <span class="menu-item-text">선물세트</span>
+          <span class="menu-item-text gift-set">선물세트</span>
         </li>
         <li class="menu-item">
-          <span class="menu-item-text">종합영양</span>
+          <span class="menu-item-text  total-nutrition">종합영양</span>
         </li>
         <li class="menu-item">
-          <span class="menu-item-text">면역증진</span>
+          <span class="menu-item-text immunity-enhancement">면역증진</span>
         </li>
         <li class="menu-item">
-          <span class="menu-item-text">다이어트</span>
+          <span class="menu-item-text diet">다이어트</span>
         </li>
         <li class="menu-item">
-          <span class="menu-item-text">피부건강</span>
+          <span class="menu-item-text skin-care">피부건강</span>
         </li>
       </ul>
     </header>
@@ -94,49 +94,6 @@
     </div>
   </template>
 
-  <template>
-
-    <!-- 멤버 링크 -->
-    <!-- <ul class="member">
-      <li>
-        <a href="#">로그인</a>
-      </li>
-      <li>
-        <a href="#">회원가입</a>
-      </li>
-      <li>
-        <a href="#">마이페이지</a>
-      </li>
-      <li>
-        <a href="#">장바구니</a>
-      </li>
-    </ul> -->
-  </template>
-
-
-  <!-- 메뉴바 -->
-  <!-- <template id="menu">
-    <ul class="menu">
-      <li class="menu-item menu-act">
-        <span class="menu-item-text">베스트</span>
-      </li>
-      <li class="menu-item">
-        <span class="menu-item-text">선물세트</span>
-      </li>
-      <li class="menu-item">
-        <span class="menu-item-text">종합영양</span>
-      </li>
-      <li class="menu-item">
-        <span class="menu-item-text">면역증진</span>
-      </li>
-      <li class="menu-item">
-        <span class="menu-item-text">다이어트</span>
-      </li>
-      <li class="menu-item">
-        <span class="menu-item-text">피부건강</span>
-      </li>
-    </ul>
-  </template> -->
 
   <!-- 상품 목록 -->
   <template id="product-list">
@@ -224,42 +181,61 @@
   <template id="cart-row">
     <li class="cart-row">
       <input type="checkbox">
-      <img class="main-image">
-      <span class="title"></span>
-      <span class="description"></span>
-      <span class="option"></span>
-      <span class="quantity"></span>
-      <span class="price"></span>
+      <img class="cart-main-image">
+      <span class="cart-title"></span>
+      <span class="cart-description"></span>
+      <span class="cart-option"></span>
+      <span class="cart-quantity"></span>
+      <span class="cart-price"></span>
       </div>
     </li>
   </template>
-  <!-- 테이블로 장바구니 페이지 작성
-    <table>
+
+  <!-- 테이블로 장바구니 페이지 작성 -->
+  <template>
+    <h1>카트</h1>
+     <table class="cart-table">
       <thead>
         <tr>
-          <th>상품정보</th>
+          <th><input type="checkbox" class="checkbox-all" checked></th>
+          <th>상품 이미지</th>
+          <th>상품 정보</th>
           <th>수량</th>
-          <th>상품금액</th>
-          <th>배송비</th>
-          <th>합계</th>
+          <th>삭제</th>
         </tr>
       </thead>
-      <tbody class="cart-item">
+      <tbody class="cart-list">
       </tbody>
     </table>
-  </template> -->
+    <button class="order"></button>
+  </template>
 
 
   <!-- 테이블로: 장바구니 각 항목 -->
-  <!-- <template>
-    <tr>
-      <div class="main-image"></div>
-      <td class="title"></td>
-      <td class="description"></td>
-      <td class="option"></td>
-      <td  class="price"></td>
+   <template>
+    <tr class= "cart-item">
+      <td>
+        <input type="checkbox" class="checkbox" checked>
+      </td>
+      <td>
+        <img class="main-image">
+      </td>
+      <td>
+        <div class="title"></div>
+        <div class="option"></div>
+        <div class="price"></div>
+      </td>
+      <td>
+        <form class="quantity-form">
+          <input type="number" name="quantity" class="quantity">
+          <button>수정</button>
+        </form>
+      </td>
+      <td>
+        <button class="delete">삭제</button>
+      </td>
     </tr>
-  </template> -->
+  </template>
 
 
   <!-- <header>

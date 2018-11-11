@@ -32,13 +32,29 @@ const rootEl = document.querySelector('.root');
 function drawFragment(frag) {
   const layoutFrag = document.importNode(templates.layout, true);
   const mainEl = layoutFrag.querySelector(".main");
-  // const loginEl= layoutFrag.querySelector(".login");
-  // loginEl.addEventListener('click', e => {
-  //   drawLoginForm()
-  // })
+  const loginEl = layoutFrag.querySelector(".login");
+  const bestEl = layoutFrag.querySelector(".best");
+  const giftSetEl = layoutFrag.querySelector(".gift-set");
+
+  // 로그인 버튼 클릭 -> 로그인 폼 화면으로 이동
+  loginEl.addEventListener('click', e => {
+    drawLoginForm();
+  });
+  // 베스트 버튼 클릭 -> 베스트 목록 화면으로 이동
+  bestEl.addEventListener('click', e => {
+    drawProductList('best');
+  })
+  // 선물 세트 버튼 클릭 -> 선물세트 목록 화면으로 이동
+  giftSetEl.addEventListener('click', e => {
+    drawProductList('gift-set');
+  })
+
+
+
   mainEl.appendChild(frag);
   rootEl.textContent = "";
   rootEl.appendChild(layoutFrag);
+
 }
 
 
@@ -68,6 +84,11 @@ async function drawLoginForm() {
       password
     });
     localStorage.setItem('token', res.data.token);
+
+
+
+
+
 
     // 왔던 곳으로 다시 돌아간다.
     // 멤버에 있는 로그인 버튼을 클릭했을 때 ->
@@ -99,8 +120,8 @@ async function drawProductList(category) {
   }
   const { data: productList } = await api.get('/products', {
     params
-      })
-  const { data } =await api.get('/options');
+  })
+  const { data } = await api.get('/options');
   let index = 0;
   // 4. 내용 채우기
   for (const product of productList) {
@@ -120,7 +141,7 @@ async function drawProductList(category) {
     mainImageEl.setAttribute("src", product.mainImgUrl);
     titleEl.textContent = product.title;
     descriptionEl.textContent = product.description;
-    console.log(totalEl);
+    // console.log(totalEl);
     totalEl.textContent = data[index].price + "원";
     index += 2;
     //  5) 이벤트 리스너 등록하기
@@ -243,7 +264,7 @@ async function drawProductDetail(productId) {
       });
 
 
-      if (confirm('선택하신 상품이 장바구니에 추가되었습니다.\n 장바구니로 이동하시겠습니까?')) {
+      if (confirm('선택하신 상품이 카트에 추가되었습니다.\n 카트로 이동하시겠습니까?')) {
         // 확인 버튼 누르면 실행할 코드
         // 장바구니로 이동 시키는 코드
         drawCartList();
@@ -253,7 +274,7 @@ async function drawProductDetail(productId) {
 
       // 로그인을 하지 않았으면 -> 로그인 폼으로 이동시키기
     } else {
-
+      confirm('카트에 담기는 로그인 후 사용가능한 서비스입니다. \n 로그인 화면으로 이동하시겠습니까?')
       drawLoginForm();
     }
 
@@ -270,92 +291,77 @@ async function drawCartList() {
   const frag = document.importNode(templates.cartItem, true);
 
   // 2. 요소 선택
+  const cartTableEl = frag.querySelector('cart-table');
   const cartItemEl = frag.querySelector('.cart-item');
-  const cartInfoEl = frag.querySelector('.cart-info');
-  const mainImageEl = frag.querySelector('.main-image');
+  const checkboxEl = frag.querySelector('.checkbox');
+  const mainImageEl = frag.querySelector('main-image');
   const titleEl = frag.querySelector('.title');
   const optionEl = frag.querySelector('.option');
-  const quantityEl = frag.querySelector('.quantity');
   const priceEl = frag.querySelector('.price');
+  const quantityEl = frag.querySelector('.quantity');
+
+
+  //  5) 이벤트 리스너 등록하기
+
+
+
 
 
   // 3. 필요한 데이터 불러오기
-  //get요청으로 해당 장바구니 가져오기
+  // //get요청으로 해당 장바구니 가져오기
+  // const { data: { cartItems } }
+  // = await api.get('/cartItems', {
+  //   params: {
+  //       _expand: 'options',
+  //       ordered: false
+  //     }
+  //   });
+
+  // console.log(cartItems);
+  // const params = new URLSearchParams();
+  // cartItems.forEach(c => {
+  //   params.append('id', c.optionId)
+  // })
+  // const { data: product } = await api.get('/products', {
+  //   params
+  // });
+  // console.log(product);
+
+
   // const { data: cartItemList }
   // = await api.get("/cartItems", {
-  //   params: {
-  //     ordered: false,
-  //     _expand: "product"
-  //   }
+    //   params: {
+      //     ordered: false,
+      //     _expand: "product"
+      //   }
   // });
 
 
-  const { data:{cartItems} }
-  = await api.get('/cartItems', {
-    params: {
-      _expand: 'options',
-      ordered: false
-    }
-  });
-
-  console.log(cartItems);
-  const params = new URLSearchParams();
-  options.forEach(c => {
-    params.append('id', c.productId )
-  })
-  const { data: productList } = await api.get('/products', {
-    params
-  });
 
 
 
 
-  // // 먼저 orders, cartItems를 불러옵니다.
-  // const { data: { cartItems } } = await api.get('/orders/1', {
-  //   params: {
-  //     _embed: 'cartItems'
-  //   }
-  // })
+  // 4. 내용 채우기
+  // 장바구니에 추가된 내용 화면에 그리기
+  // mainImageEl.setAttribute("src", product.mainImgUrl);
+  // titleEl.textContent = product.title;
+  // descriptionEl.textContent = product.description;
+  // // console.log(totalEl);
 
-  // // 그 뒤 options, products를 불러옵니다.
-  // const params = new URLSearchParams()
-  // cartItems.forEach(c => params.append('id', c.optionId))
-  // params.append('_expand', 'product')
 
-  // const { data: options } = await api.get('/options', {
-  //   params
-  // })
+  // totalEl.textContent = data[index].price + "원";
+  // index += 2;
+
+
+  // 5. 이벤트 리스너 등록하기
 
 
 
-    // 4. 내용 채우기
-    // mainImageEl.setAttribute("src", );
-    // titleEl.
-
-
-
-    // mainImageEl.setAttribute("src", mainImgUrl);
-    // titleEl.textContent = title;
-    // descriptionEl.textContent = description;
-    // for (const url of detailImgUrls) {
-    //   const frag = document.importNode(templates.detailImage, true);
-
-    //   const detailImageEl = frag.querySelector(".detail-image");
-
-
-    //   detailImageEl.setAttribute("src", url);
-
-    //   detailImageListEl.appendChild(frag);
-    // }
-
-    // 5. 이벤트 리스너 등록하기
-
-
-
-
- // 6. 템플릿을 문서에 삽입
-
+// 6. 템플릿을 문서에 삽입
+// 장바구니 화면 그리기
+drawFragment(frag);
 }
+
 
 
 // 페이지 로드 시 그릴 화면 설정
