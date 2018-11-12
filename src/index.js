@@ -216,10 +216,10 @@ async function drawProductDetail(productId) {
 
   // buyNowEl.addEventListener('click', e => {
   //   e.preventDefault();
-  //   // 로그인이 되어 있으면
+  // //   // 로그인이 되어 있으면
   //   const token = localStorage.getItem('token');
   //   if (token) {
-  //     // // 주문/결제 페이지로 보내는 코드
+  // //     // // 주문/결제 페이지로 보내는 코드
   //     drawCartList();
 
   //     //로그인이 되어있지 않으면
@@ -232,7 +232,7 @@ async function drawProductDetail(productId) {
 
 
 
-  // 카트담기 버튼을 클릭했을 때
+
   // 이벤트가 일어나는 함수 안에서 서버와 통신하면 -> e앞에 async를 써줘야 함
   cartFormEl.addEventListener("submit", async e => {
 
@@ -309,31 +309,31 @@ async function drawCartList() {
 
   // 3. 필요한 데이터 불러오기
   // //get요청으로 해당 장바구니 가져오기
-  // const { data: { cartItems } }
-  // = await api.get('/cartItems', {
-  //   params: {
-  //       _expand: 'options',
-  //       ordered: false
-  //     }
-  //   });
+  const { data: { cartItems } }
+  = await api.get('/cartItems', {
+    params: {
+        _expand: 'options',
+        ordered: false
+      }
+    });
 
   // console.log(cartItems);
-  // const params = new URLSearchParams();
-  // cartItems.forEach(c => {
-  //   params.append('id', c.optionId)
-  // })
-  // const { data: product } = await api.get('/products', {
-  //   params
-  // });
+  const params = new URLSearchParams();
+  cartItems.forEach(c => {
+    params.append('id', c.optionId)
+  })
+  const { data: product } = await api.get('/products', {
+    params
+  });
   // console.log(product);
 
 
   // const { data: cartItemList }
   // = await api.get("/cartItems", {
-    //   params: {
-      //     ordered: false,
-      //     _expand: "product"
-      //   }
+  //   params: {
+  //     ordered: false,
+  //     _expand: "product"
+  //   }
   // });
 
 
@@ -357,9 +357,9 @@ async function drawCartList() {
 
 
 
-// 6. 템플릿을 문서에 삽입
-// 장바구니 화면 그리기
-drawFragment(frag);
+  // 6. 템플릿을 문서에 삽입
+  // 장바구니 화면 그리기
+  drawFragment(frag);
 }
 
 
